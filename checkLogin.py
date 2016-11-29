@@ -57,8 +57,8 @@ class Authenticate:
         payload = {
             '__VIEWSTATE':'dDwyODE2NTM0OTg7Oz5dbZZ3b8b2R7WRiuJkc5wPtsTwOg==',
             '__VIEWSTATEGENERATOR':'92719903',
-            'txtUserName': '201527010324',
-            'TextBox2': 'wpj19960214',
+            'txtUserName': self.__number,
+            'TextBox2': self.__passwd,
             'txtSecretCode': code,
             'RadioButtonList1': '学生',
             'Button1':'',
