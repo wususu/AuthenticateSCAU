@@ -1,4 +1,5 @@
 import requests
+import os
 from bs4 import BeautifulSoup
 
 
@@ -14,7 +15,7 @@ class Authenticate:
         self.__codeUrl = "http://202.116.160.166/CheckCode.aspx"
         self.__code = ''
         self.__cookies = ''
-        self.__imgName = 'code.jpg'
+        self.__imgName = os.path.dirname(os.path.abspath(__file__))+'/'+number+'.jpg'
         self.__VIEWSTATE = ''
 
     def getPic(self):
@@ -72,7 +73,8 @@ class Authenticate:
         html = BeautifulSoup(resp.content, "html.parser")
         tag_list = html.find_all("span", id="xhxm")
         if len(tag_list) != 0:
-            print(tag_list)
+            # 姓名标签
+            # print(tag_list)
             self.name = tag_list[0].text[:-2]
             return self.name
         return False
@@ -80,8 +82,8 @@ class Authenticate:
     def __getData__(self):
         pass
 
-if __name__ == '__main__':
-    text = Authenticate('111','222')
-    text.getPic()
-    code = input()
-    print(text.postForms(code))
+# if __name__ == '__main__':
+#     text = Authenticate('201527010427','a01301212')
+#     text.getPic()
+#     code = input()
+#     print(text.postForms(code))
