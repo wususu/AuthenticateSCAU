@@ -40,6 +40,17 @@ class RClient(object):
                                  )
         return response.json()
 
+    def rk_report_error(self, im_id):
+        """
+        im_id:报错题目的ID
+        """
+        params = {
+            'id': im_id,
+        }
+        params.update(self.base_params)
+        r = requests.post('http://api.ruokuai.com/reporterror.json', data=params, headers=self.headers)
+        return r.json()
+
 
 # if __name__ == '__main__':
 #     rc = RClient(config.username, config.password, config.soft_id, config.soft_key)

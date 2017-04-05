@@ -15,10 +15,10 @@ class Authenticate:
         self.__codeUrl = "http://202.116.160.166/CheckCode.aspx"
         self.__code = ''
         self.__cookies = ''
-        self.__imgName = os.path.dirname(os.path.abspath(__file__))+'/'+number+'.jpg'
+        # self.__imgName = os.path.dirname(os.path.abspath(__file__))+'/'+number+'.jpg'
         self.__VIEWSTATE = ''
 
-    def getPic(self):
+    def getPic(self, path):
         """
         提取验证码
         :return:
@@ -26,7 +26,7 @@ class Authenticate:
         resp = self.__conn.get(self.__codeUrl)
         if resp.status_code != 200:
             return False
-        with open(self.__imgName, 'wb') as f:
+        with open(path, 'wb') as f:
             for chunk in resp.iter_content(chunk_size=1024):
                 f.write(resp.content)
         return True
