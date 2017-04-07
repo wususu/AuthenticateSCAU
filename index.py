@@ -1,11 +1,15 @@
 from checkLogin import Authenticate
 from identifyCode import RClient
 import config
-import os, sys
+import io, os, sys
+
+# 打印编码设置
+sys.stdout = sys.__stdout__ = io.TextIOWrapper( sys.stdout.detach(), encoding='utf-8', line_buffering=True)
+sys.stderr = sys.__stderr__ = io.TextIOWrapper( sys.stderr.detach(), encoding='utf-8', line_buffering=True)
 
 
 def run(username, password, times = ''):
-    path = os.path.dirname(os.path.abspath(__file__))+'/'+username + times  +'.jpg'
+    path = os.path.dirname(os.path.abspath(__file__))+'/codes/'+username + times  +'.jpg'
     student = Authenticate(username, password)
     student.getPic(path)
 
