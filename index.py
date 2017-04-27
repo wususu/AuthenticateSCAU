@@ -9,7 +9,7 @@ sys.stderr = sys.__stderr__ = io.TextIOWrapper( sys.stderr.detach(), encoding='u
 
 
 def run(username, password, times = ''):
-    path = os.path.dirname(os.path.abspath(__file__))+'/codes/'+username + times  +'.jpg'
+    path = os.path.dirname(os.path.abspath(__file__))+'/images/'+username + times  +'.jpg'
     student = Authenticate(username, password)
     student.getPic(path)
 
@@ -20,11 +20,14 @@ def run(username, password, times = ''):
         code = result['Result']
         id = result['Id']
         name = student.postForms(code)
+        # print(name)
         if name == False:
             if id != None:
+                # print(1111)
                 rc.rk_report_error(id)
                 return 0
-    except Exception:
+    except Exception as e:
+        # print(e)
         return 0
     return name
 
@@ -32,7 +35,6 @@ def run(username, password, times = ''):
 if __name__ == '__main__':
     username = sys.argv[1]
     password = sys.argv[2]
-    time = 0
     name = run(username, password)
     # 返回姓名
     print(name)
